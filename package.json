@@ -1,0 +1,17 @@
+{
+  "name": "hookio",
+  "version": "1.0.0",
+  "description": "A free webhook provider for testing and processing http requests",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev_api":" npm run dev --workspace=apps/api ",
+    "dev_web":" npm run dev --workspace=apps/web "
+  },
+  "workspaces":[
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "TheWisePigeon <zozozozeph@gmail.con>",
+  "license": "MIT"
+}
