@@ -1,1 +1,32 @@
-console.log("We up here")
+import express, { Request, Response } from "express"
+import * as http from "http"
+import * as socketio from "socket.io"
+import cors from "cors"
+
+const app = express()
+app.use(cors())
+
+app.get("/socket_me_daddy", (_req: Request, res: Response)=>{
+    return res.status(200).send({
+        "hello":"bozo"
+    })
+})
+
+const socket_server = http.createServer(app)
+const io = new socketio.Server(socket_server, {
+    cors:{
+        origin:"*"
+    }
+})
+
+io.on("connection", (socket)=>{
+    console.log("params")
+    socket.on("some", ()=>{
+        console.log("Bruh")
+    })
+})
+
+
+socket_server.listen(3000, ()=>{
+    console.log("App running on port 3000")
+})
