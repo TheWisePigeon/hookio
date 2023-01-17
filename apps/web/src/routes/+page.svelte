@@ -1,9 +1,20 @@
 <script lang="ts" >
     import Header from "../../../../packages/shared/Header.svelte"
     import { io } from "socket.io-client"
-    let socket_client = io("ws://localhost:3000", {
+  
+    let socket_client = io("http://localhost:3000", {
         reconnectionDelayMax:10000
     })
+    
+    let test = "bruh"
+
+    socket_client.on("hello", (params)=>{
+        console.log("quit")
+        console.log(params)
+        console.log(test)
+    })
+
+
 
     function socket_me_daddy(){
         try {
@@ -22,6 +33,10 @@
 <button class=" test " on:click={socket_me_daddy}  >
     Socket me up daddy
 </button>
+
+<div>
+        <h1>Something</h1>
+</div>
 
 <style>
     .test{

@@ -6,10 +6,9 @@ import cors from "cors"
 const app = express()
 app.use(cors())
 
-app.get("/socket_me_daddy", (_req: Request, res: Response)=>{
-    return res.status(200).send({
-        "hello":"bozo"
-    })
+app.get("/socket_me_daddy", (req: Request, res: Response)=>{
+    
+    return res.status(200).send()
 })
 
 const socket_server = http.createServer(app)
@@ -23,6 +22,11 @@ io.on("connection", (socket)=>{
     console.log("params")
     socket.on("some", ()=>{
         console.log("Bruh")
+    })
+
+    app.get("/test", (_req: Request, res: Response)=>{
+        socket.emit("hello", {test:"sumn"})
+        return res.status(200).send()
     })
 })
 
